@@ -32,7 +32,7 @@ class ContactAdapter : RecyclerView.Adapter<ContactAdapter.ContactAdapterViewHol
     return list.size
 }
     //função que passa a acessa a lista da classe externa para o adpter
-    fun updateList(List: List<Contact>) {
+    fun updateList(list: List<Contact>) {
         this.list.clear() //Limpa
         this.list.addAll(list) //Popula com a lista
         notifyDataSetChanged() //Notifica o adpter falando que a lista foi modificada, fazendo ele ser rodado novamente

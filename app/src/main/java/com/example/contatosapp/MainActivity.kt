@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
-    //obtendo o componente recycler view
+    //declarando/instanciando o componente recycler view
     private val rvList: RecyclerView by lazy {
         findViewById<RecyclerView>(R.id.rv_list)
     }
-    //obtendo o adapter que nós criamos
+    //declarando/instanciando o adapter que nós criamos
     private val adapter = ContactAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,4 +28,19 @@ class MainActivity : AppCompatActivity() {
         //Definindo o comportamento do recyclerView (estrutura)
         rvList.layoutManager = LinearLayoutManager(this)
     }
-}
+
+    private fun updateList() {
+        adapter.updateList(
+            arrayListOf (
+                Contact("Felipe",
+                "12981413189",
+                "img.png"),
+                Contact(
+                "Luis",
+                "12981413189",
+                "img.png")
+             )
+        )
+        }
+    }
+
