@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">ContatosApp</string>
+
     <string name="iv_Photograph_content_description">ContatosApp</string>
+
+    <string name="menu_menu1">menu_1</string>
+    <string name="menu_menu2">menu_2</string>
+
+    <string name="abre_drawer">abrir</string>
+    <string name="fecha_drawer">fechar</string>
 </resources>
