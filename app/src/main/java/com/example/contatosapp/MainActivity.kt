@@ -1,5 +1,6 @@
 package com.example.contatosapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -12,16 +13,17 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.contatosapp.ContactDetail.Companion.EXTRA_CONTACT
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ClickItemContactListener {
     //declarando/instanciando o componente recycler view
     private val rvList: RecyclerView by lazy {
         findViewById<RecyclerView>(R.id.rv_list)
     }
 
     //declarando/instanciando o adapter que nós criamos
-    private val adapter = ContactAdapter()
+    private val adapter = ContactAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,5 +91,15 @@ class MainActivity : AppCompatActivity() {
 
 
         }
+    }
+
+//Quando tocar em algum item da lista, eu preciso abrir minha activity
+    override fun ClicklItemContact(contact: Contact) {
+
+    val intent = Intent(this, ContactDetail::class.java)
+    //metodo chave-valor que identifica o objeto para que do outro lado (outra tela) consigamos recuperá-lo
+    intent.putExtra(EXTRA_CONTACT, contact)
+    //Abre minha tela
+    startActivity(intent)
     }
 }

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 //Classe que gerencia a RecyclerView (lista)
-class ContactAdapter : RecyclerView.Adapter<ContactAdapter.ContactAdapterViewHolder>() {
+class ContactAdapter (var listener: ClickItemContactListener) : RecyclerView.Adapter<ContactAdapter.ContactAdapterViewHolder>() {
 
 //Variável para armazenar a lista que eu vou receber
     private val list : MutableList <Contact> = mutableListOf()
@@ -21,7 +21,7 @@ class ContactAdapter : RecyclerView.Adapter<ContactAdapter.ContactAdapterViewHol
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactAdapterViewHolder {
     //Estrutura que diz de fato quem é o arquivo XML que vai desenhar o item na tela
        val view = LayoutInflater.from(parent.context).inflate(R.layout.contact_item, parent,false)
-       return ContactAdapterViewHolder(view)
+       return ContactAdapterViewHolder(view, list, listener)
     }
 //Função que varre cada item da lista e preenche as informações na tela (Popula itens no RecyclerView)
     override fun onBindViewHolder(holder: ContactAdapterViewHolder, position: Int) {
@@ -38,10 +38,18 @@ class ContactAdapter : RecyclerView.Adapter<ContactAdapter.ContactAdapterViewHol
         notifyDataSetChanged() //Notifica o adpter falando que a lista foi modificada, fazendo ele ser rodado novamente
     }
     //Classe que gerencia cada item da recycleView
-    class ContactAdapterViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+    class ContactAdapterViewHolder(itemView: View, var list: List<Contact>, var listener: ClickItemContactListener): RecyclerView.ViewHolder(itemView){
         private val tvName: TextView = itemView.findViewById(R.id.tv_name)
         private val tvTelefone: TextView = itemView.findViewById(R.id.tv_telefone)
         private val ivFoto: ImageView = itemView.findViewById(R.id.iv_Photograph)
+
+        //Criando o clique no meu item a partir do listener ClickItemContactListener
+        init {
+
+            itemView.setOnClickListener {
+                listener.ClicklItemContact(list[adapterPosition])
+            }
+        }
 
         //Função que vai fazer a declaração de cada item do nosso contato
           fun bind(contact: Contact){
