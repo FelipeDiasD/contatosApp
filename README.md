@@ -1,7 +1,7 @@
 ### contatosApp
 
-A simple contacts app
+A simple contacts app, developed along a bootcamp
 
-- main screen and components ready
+- main screen and internal logic is ready
 - Need to work on and add more funcionalities
-- Work in progress
+- App is complete, but can be improved (Work in progress)
